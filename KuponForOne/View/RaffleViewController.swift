@@ -9,13 +9,18 @@ import UIKit
 
 class RaffleViewController: UIViewController {
     
-    private var coupons = 0
+    weak var delegate: MainVCDelegat?
+    var coupons = 0
     private var indexForArray: Int = 0
     private var randomValue = 0
     private var repitNumber = 0
     
     @IBOutlet weak var winner: UIImageView!
     @IBOutlet private var PlayerImage: [UIImageView]!
+   
+    @IBOutlet var playerNameCollection: [UILabel]!
+
+    private let nameArray = ["OLIVER", "JACK", "HARRY", "JACOB", "CHARLY", "THOMAS", "GEORGE", "OSCAR"]
     
     private var timer = Timer()
     private let selectedImage = UIImage(named: "selectedPlayer")
@@ -23,13 +28,28 @@ class RaffleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(coupons)
+        setPlayerName(array: nameArray)
        
     }
     
-    @IBAction private func backButton(_ sender: UIButton) {
-        dismiss(animated: true)
+    @IBAction func backButton(_ sender: Any) {
+        delegate?.update(text: coupons)
     }
+    
+    private func setPlayerName (array: [String]){
+        for player in playerNameCollection {
+            
+           
+            player.text = array.randomElement()
+           
+            
+        }
+    }
+    
+   
+    
+    
     
     @IBAction private func speenButton(_ sender: UIButton) {
         winner.isHidden = true
@@ -49,7 +69,7 @@ class RaffleViewController: UIViewController {
                 timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(winnerHidden), userInfo: nil, repeats: false)
                 winner.isHidden = false
                 coupons += 1
-                print(coupons)
+             
             }
         } else {
 
@@ -68,7 +88,7 @@ class RaffleViewController: UIViewController {
                     indexForArray += 1
                 }
           
-                print(repitNumber,randomValue)
+               
 
         }
         
@@ -80,9 +100,9 @@ class RaffleViewController: UIViewController {
         
             winner.isHidden = true
             timer.invalidate()
-        
-        
     }
+    
+ 
     
     
 

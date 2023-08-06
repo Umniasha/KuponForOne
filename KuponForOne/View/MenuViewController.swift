@@ -40,13 +40,31 @@ class MenuViewController: UIViewController {
         myImageView.frame.size = contentSize
         myImageView.contentMode = .scaleToFill
         scrollView.addSubview(myImageView)
-        print(myImageView.frame.size)
-        print(scrollView.frame.size)
+        backButton()
+       
+   
+         
+        
         
     }
     
+    private func backButton (){
+        
+        let button = UIButton(frame: CGRect(x: 10, y: 20, width: 50, height: 50))
+        scrollView.addSubview(button)
+        button.setBackgroundImage(UIImage(named: "backButton"), for: .normal)
+        button.addTarget(self, action: #selector(onClickBackButton), for: .touchUpInside)
+        
+    }
+    
+   
+    
+    
+    @objc private func onClickBackButton (){
+        dismiss(animated: true)
+    }
 
-
+    
 
 }
 
