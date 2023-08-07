@@ -10,7 +10,7 @@ import UIKit
 class RaffleViewController: UIViewController {
     
     weak var delegate: MainVCDelegat?
-    var coupons = 0
+    
     private var indexForArray: Int = 0
     private var randomValue = 0
     private var repitNumber = 0
@@ -28,7 +28,7 @@ class RaffleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(coupons)
+      
         setPlayerName(array: nameArray)
        
     }
@@ -68,7 +68,7 @@ class RaffleViewController: UIViewController {
             if indexForArray == 1{
                 timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(winnerHidden), userInfo: nil, repeats: false)
                 winner.isHidden = false
-                coupons += 1
+                addCoupons()
              
             }
         } else {

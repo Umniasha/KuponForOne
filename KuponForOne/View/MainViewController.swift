@@ -13,7 +13,7 @@ protocol MainVCDelegat: AnyObject {
 
 
 
-class MainViewController: UIViewController, MainVCDelegat{
+class MainViewController: UIViewController/*, MainVCDelegat*/{
    
     
 
@@ -27,25 +27,11 @@ class MainViewController: UIViewController, MainVCDelegat{
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? RaffleViewController {
-            vc.delegate = self
-            vc.coupons = coupons
-        } else if let vc = segue.destination as? CouponsViewController {
-            vc.coupons = coupons
 
-        }
-       
-       
-        
-        
-        }
+    
+   
     
     
-    func update(text: Int) {
-        coupons = text
-       
-    }
    
     @IBAction  func toMainVC( _ unwindSegue: UIStoryboardSegue){
        
